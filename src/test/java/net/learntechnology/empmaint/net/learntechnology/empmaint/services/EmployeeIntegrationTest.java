@@ -20,8 +20,8 @@ public class EmployeeIntegrationTest extends BaseIntegrationTest {
 	private EmployeeService employeeService;
 
 	@Test
-	public void getAllEmployeesTest() {
-		List<Employee> employees = employeeService.getAllEmployees();
+	public void should_fetch_all_employees() {
+		List<Employee> employees = employeeService.fetchAll();
 		for(Employee emp: employees) {
 			logger.debug("EMP: {}", emp);
 		}
@@ -29,20 +29,20 @@ public class EmployeeIntegrationTest extends BaseIntegrationTest {
 	}
 
 	@Test
-	public void getEmployeeTest() {
-		Employee emp = employeeService.getEmployee(1);
+	public void should_fetch_john() {
+		Employee emp = employeeService.fetch(1);
 		logger.debug("Emp returned {}", emp);
 		Assert.assertEquals("John", emp.getFirstName());
 	}
 
 	@Test
 	@Transactional
-	public void insertEmployeeTest() {
+	public void should_insert_an_employee() {
 		Department d = new Department();
 		d.setId(100);
 		Employee emp = new Employee(null, "TestFirstName", "TestLastName", 43, d);
-		employeeService.insertEmployee(emp);
-		emp = employeeService.getEmployee(emp.getId());
+		employeeService.insert(emp);
+		emp = employeeService.fetch(emp.getId());
 		logger.debug("Emp returned {}", emp);
 		Assert.assertEquals("TestFirstName", emp.getFirstName());
 	}

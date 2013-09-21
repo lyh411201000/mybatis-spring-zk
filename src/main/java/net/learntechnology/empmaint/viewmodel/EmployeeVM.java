@@ -30,7 +30,7 @@ public class EmployeeVM {
 
 	@Init
 	public void init() {
-		departments = departmentService.getAllDepartments();
+		departments = departmentService.fetchAll();
 		populateEmployees();
 	}
 
@@ -38,7 +38,7 @@ public class EmployeeVM {
 	@Command
 	public void editEmployee() {
 		//I prefer to use a copy vs editing the selectedUser from our grid
-		selectedEmployeeCopy = employeeService.getEmployee(selectedEmployee.getId());
+		selectedEmployeeCopy = employeeService.fetch(selectedEmployee.getId());
 		logger.debug("Employee for edit: {}", selectedEmployeeCopy);
 		//update the Department in our Employee based on the correct one form our departments list
 		//this enables it show up selected properly. (note: might be a better way than this? let me know)
@@ -54,9 +54,9 @@ public class EmployeeVM {
 	@Command
 	public void submit() {
 		if (selectedEmployeeCopy.getId() != null) {
-			employeeService.updateEmployee(selectedEmployeeCopy);
+			employeeService.update(selectedEmployeeCopy);
 		} else {
-			employeeService.insertEmployee(selectedEmployeeCopy);
+			employeeService.insert(selectedEmployeeCopy);
 		}
 		//clear our selectedEmployeeCopy
 		selectedEmployeeCopy = null;
@@ -67,7 +67,7 @@ public class EmployeeVM {
 	@NotifyChange({"employees","selectedEmployeeCopy"})
 	@Command
 	public void delete() {
-		employeeService.deleteEmployee(selectedEmployeeCopy.getId());
+		employeeService.delete(selectedEmployeeCopy.getId());
 		//clear our selectedEmployeeCopy
 		selectedEmployeeCopy = null;
 		//populate the employees again
@@ -83,7 +83,7 @@ public class EmployeeVM {
 	}
 
 	private void populateEmployees() {
-		this.employees = employeeService.getAllEmployees();
+		this.employees = employeeService.fetchAll();
 	}
 
 	public List<Department> getDepartments() {

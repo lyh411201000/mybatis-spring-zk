@@ -18,8 +18,8 @@ public class DepartmentIntegrationTest extends BaseIntegrationTest {
 	private DepartmentService departmentService;
 
 	@Test
-	public void getDepartmentsTest() {
-		List<Department> departments = departmentService.getAllDepartments();
+	public void should_fetch_all_departments() {
+		List<Department> departments = departmentService.fetchAll();
 		for(Department d: departments) {
 			logger.debug("Dept: {}", d);
 		}

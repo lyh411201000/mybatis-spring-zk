@@ -2,12 +2,12 @@ package net.learntechnology.empmaint.mapper;
 
 import net.learntechnology.empmaint.domain.Employee;
 
-import java.util.List;
-
-public interface EmployeeMapper {
-	List<Employee> getAllEmployees();
-	void updateEmployee(Employee emp);
-	void deleteEmployee(Integer id);
-	public Employee getEmployee(Integer id);
-	public void insertEmployee(Employee emp);
+/*
+You need this 'dummy mapper' to map the MyBATIS xml class.
+Note, also, in real life you'll rarely ever just "only"
+have the simple CRUD operations you see in the GenericMapper.
+You typically end up with other mapper operations that go
+beyond the basic crud ones found in our GenericMapper.
+ */
+public interface EmployeeMapper extends GenericMapper<Employee, Integer> {
 }

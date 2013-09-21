@@ -60,6 +60,9 @@ Having a service class, can keep unwanted business logic from creeping into your
 Of course, feel free to skip using the service class approach if you so desire. There is nothing inherently wrong with
 using your mappers directly in your ViewModel.
 
+Also note, both the Mappers and Service extend a Generic interface/abstract class. These hold your typical core crud operations. fetch, update, delete.
+In a real world example you'll be filling in other methods in your mappers and service classes as your business needs arise.
+
 There are sample filters included. By default the local is used when you do a build. For this sample application the filters don't do much since we're using a standalone internal db, but in real life you'd have different datasource properties for different environments. The filter will replace the appropriate wildcards in anything under web-inf (you could change this in your pom.) The filter currently replaces the wildcards in web-application.properties and the spring config files (in real life the datasource you see commented out in services-config.xml would be replaced based on your filter.) To build using a different profile, for example the qa version, you'd just switch to building with a different profile from maven: mvn clean install -P qa
 
 [ I still need to clean up the pom.xml some. I know I have some un-needed dependencies in there (I started this project as a port of a more complex project so not everything is completely cleaned up in this simplified application.) ]
@@ -90,6 +93,8 @@ In the services-config.xml you'll see the setup. This tells MyBatis what datasou
 	</bean>
 
 Now you just make a Mapper interface and the mapper xml that holds the sql:
+(This shows a non-generic approach. The existing git project has these types
+of methods in a Generic Mapper. )
 
      public interface EmployeeMapper {
 		List getAllEmployees();
@@ -139,7 +144,9 @@ Example not using a ResultMap needed:
 	</select>
 
 To use our mapper we just declare it as a resource. SIMPLE!:
- 
+(This shows a non-generic approach. The existing git project has these types
+of service methods in a Generic Service, simplifying your basic crud even more. )
+
 	@Service
 	public class EmployeeServiceImpl implements EmployeeService {
 	
