@@ -7,8 +7,9 @@ import java.util.List;
 
 public abstract  class GenericCrudService<T, PK>  {
 
-	protected Class<T> type;
-	protected GenericMapper mapper;
+	//need to be public I believe for Spring AOP CGLIB
+	public Class<T> type;
+	public GenericMapper mapper;
 
 	public GenericCrudService(Class<T> type, GenericMapper mapper) {
 		this.type = type;
