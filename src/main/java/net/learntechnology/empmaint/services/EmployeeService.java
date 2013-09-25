@@ -21,7 +21,7 @@ public class EmployeeService extends GenericCrudService<Employee, Integer> {
 
 	@Autowired(required = true)
 	public EmployeeService(EmployeeMapper employeeMapper) {
-		super(Employee.class, employeeMapper);
+		super(employeeMapper);
 	}
 
 	//no arg needed by spring AOP cglib

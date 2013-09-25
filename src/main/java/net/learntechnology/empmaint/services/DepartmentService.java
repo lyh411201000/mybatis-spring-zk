@@ -21,7 +21,7 @@ public class DepartmentService extends GenericCrudService<Department, Integer> {
 
 	@Autowired(required = true)
 	public DepartmentService(DepartmentMapper departmentMapper) {
-		super(Department.class, departmentMapper);
+		super(departmentMapper);
 	}
 	//no arg needed by spring AOP cglib
 	public DepartmentService() {
