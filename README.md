@@ -139,7 +139,7 @@ Note you don't always have to use a ResultMap when your columns match up to your
 
 Example not using a ResultMap needed:
 
-	<select id="getAllDepartments" resultType="net.learntechnology.empmaint.domain.Department">
+	<select id="fetchEmployees" resultType="net.learntechnology.empmaint.domain.Department">
 		SELECT id, name FROM DEPARTMENT
 	</select>
 
@@ -153,8 +153,8 @@ of service methods in a Generic Service, simplifying your basic crud even more. 
 		@Resource
 		private EmployeeMapper employeeMapper;
 	
-		public List getAllEmployees() {
-			return employeeMapper.getAllEmployees();
+		public List fetchEmployees() {
+			return employeeMapper.fetchEmployees();
 		}
 
          .....
@@ -172,7 +172,7 @@ Example service being used in a ZK ViewModel:
 	
 		@Init
 		public void init() {
-			employees = employeeService.getAllEmployees();
+			employees = employeeService.fetchEmployees();
 		}
 
 

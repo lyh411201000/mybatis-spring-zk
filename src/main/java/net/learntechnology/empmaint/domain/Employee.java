@@ -3,7 +3,6 @@ package net.learntechnology.empmaint.domain;
 
 public class Employee extends BaseVO {
 	private static final long serialVersionUID = -8658719776854779187L;
-	private Integer id;
 	private Integer age;
 	private String firstName;
 	private String lastName;
@@ -18,14 +17,6 @@ public class Employee extends BaseVO {
 		this.lastName = lastName;
 		this.age = age;
 		this.department = department;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Integer getAge() {

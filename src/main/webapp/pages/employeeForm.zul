@@ -1,0 +1,65 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+
+<window id="employeeForm" mode="modal"
+	sizable="true" closable="true"
+	height="400px" width="450px"
+	title="Employee Form" border="normal"
+	apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('net.learntechnology.empmaint.viewmodel.EmployeeFormVM')"
+	validationMessages="@id('vmsgs')">
+
+
+	<vlayout style="margin-top:8px;"
+		form="@id('itm')
+		@load(vm.employee)
+		@save(vm.employee, before='save')">
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min"/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<cell sclass="row-title">ID:</cell>
+						<cell><label value="@load(itm.id)"/></cell>
+					</row>
+					<row>
+						<cell sclass="row-title">First:</cell>
+						<cell><textbox value="@bind(itm.firstName)" constraint="no empty"/></cell>
+					</row>
+					<row>
+						<cell sclass="row-title">Last:</cell>
+						<cell><textbox value="@bind(itm.lastName)" constraint="no empty"/></cell>
+					</row>
+					<row>
+						<cell sclass="row-title">Age:</cell>
+						<cell><textbox value="@bind(itm.age)" constraint="no empty"/></cell>
+					</row>
+					<row>
+						<cell sclass="row-title">Department:</cell>
+						<cell>
+							<listbox model="@load(vm.departments)" selectedItem="@bind(itm.department)"
+								width="250px" mold="select" rows="1">
+								<template name="model" var="dep">
+									<listitem>
+										<listcell label="@load(dep.name)" />
+									</listitem>
+								</template>
+							</listbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</vlayout>
+		<vlayout style="margin-top:5px;">
+			<hlayout style="margin-top:5px;">
+				<button label="Save" onClick="@command('save')"/>
+				<button label="Delete" onClick="@command('delete')" style="margin-left:5px;"
+						disabled="@load(itm.id eq null)"/>
+			</hlayout>
+		</vlayout>
+	</vlayout>
+</window>
+</zk>
