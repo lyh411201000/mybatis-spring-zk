@@ -2,9 +2,7 @@ mybatis-spring-zk
 =================
 
 Sample application demonstrating integration of MyBatis 3.2, Spring 3.2, and ZK 6.5.3 (MVVM)
-
-See it running on the RedHat OpenShift cloud at http://mybatisspringzk-simbo1905.rhcloud.com/
-
+ 
 **To build:**<br/>
 Requires maven<br/>
 From project directory: mvn clean install
