@@ -15,7 +15,7 @@ Url: http://localhost:8080
 Move the generated employee-maintenance.war file in target/ to your app server's deploy dir (eg tomcat/webapps) and start your server.
 Url: http://localhost:8080/employee-maintenance/
 
-**OR To Deploy Option 1. To openshift:**<br/>
+**OR To Deploy Option 2: Deploy to openshift:**<br/>
 Install the tools etc as per https://openshift.redhat.com/community/get-started then:
 
 	# create a diy app
